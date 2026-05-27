@@ -17,9 +17,9 @@ The propagation is modeled using the Split Step Fourier Method (SSFM) to solve t
 
 ## Physical Model
 
-Pulse propagation is governed by:
+Pulse propagation is governed by the Generalized Nonlinear Schrödinger Equation (GNLSE):
 
-\[
+$$
 \frac{\partial A}{\partial z}
 =
 -\frac{\alpha}{2}A
@@ -28,58 +28,71 @@ i\sum_{k\ge2}
 \frac{\beta_k}{k!}
 \left(
 i\frac{\partial}{\partial t}
-\right)^kA
+\right)^k A
 +
-i\gamma|A|^2A
-\]
+i\gamma |A|^2 A
+$$
 
 where:
 
 | Parameter | Description |
 |----------|-------------|
-| A(z,t) | Pulse envelope |
-| α | Linear loss |
-| β₂ | Group velocity dispersion |
-| β₃ | Third order dispersion |
-| γ | Nonlinear coefficient |
+| $A(z,t)$ | Pulse envelope |
+| $\alpha$ | Linear loss |
+| $\beta_2$ | Group velocity dispersion |
+| $\beta_3$ | Third order dispersion |
+| $\gamma$ | Nonlinear coefficient |
 
 ---
 
 ## Simulation Method
 
-The propagation is solved using the Split Step Fourier Method:
+The propagation is solved using the Split Step Fourier Method (SSFM):
 
-1. Nonlinear step in time domain
+### Nonlinear Step
 
-\[
+$$
 A(z+\Delta z)
 =
 A(z)
 \exp(i\gamma |A|^2\Delta z)
-\]
+$$
 
-2. Linear propagation in frequency domain
+### Fourier Transform
 
-\[
-\tilde A
-=
-FFT(A)
-\]
+$$
+\tilde A = FFT(A)
+$$
 
-\[
+### Linear Step
+
+$$
 \tilde A
 \leftarrow
 \tilde A
 \exp(D(\omega)\Delta z)
-\]
+$$
 
-\[
-A
-=
-IFFT(\tilde A)
-\]
+### Inverse Fourier Transform
+
+$$
+A = IFFT(\tilde A)
+$$
 
 ---
+
+## Dispersion Operator
+
+$$
+D(\omega)
+=
+i\frac{\beta_2}{2}\omega^2
++
+i\frac{\beta_3}{6}\omega^3
++
+i\frac{\beta_4}{24}\omega^4
++\cdots
+$$
 
 ## Architecture
 
