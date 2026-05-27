@@ -134,30 +134,40 @@ Material dispersion is included using:
 From COMSOL eigenmode results:
 
 Effective index:
-\[
-n_{\text{eff}}(\lambda)
-\]
+
+$$
+n_{\mathrm{eff}}(\lambda)
+$$
 
 Propagation constant:
-\[
-\beta(\lambda)=\frac{2\pi n_{\text{eff}}}{\lambda}
-\]
+
+$$
+\beta(\lambda) = \frac{2\pi n_{\mathrm{eff}}(\lambda)}{\lambda}
+$$
+
+Angular frequency:
+
+$$
+\omega = \frac{2\pi c}{\lambda}
+$$
 
 Group velocity:
-\[
-v_g=\left(\frac{d\beta}{d\omega}\right)^{-1}
-\]
 
-Group velocity dispersion:
-\[
-\beta_2=\frac{d^2\beta}{d\omega^2}
-\]
+$$
+v_g = \left(\frac{d\beta}{d\omega}\right)^{-1}
+$$
+
+Group velocity dispersion (GVD):
+
+$$
+\beta_2 = \frac{d^2 \beta}{d\omega^2}
+$$
 
 Dispersion parameter:
-\[
-D=-\frac{2\pi c}{\lambda^2}\beta_2
-\]
 
+$$
+D = -\frac{2\pi c}{\lambda^2}\beta_2
+$$
 ---
 
 ## COMSOL Output Files
