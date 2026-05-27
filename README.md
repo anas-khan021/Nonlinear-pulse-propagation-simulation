@@ -41,11 +41,13 @@ where:
 
 The propagation is solved using the Split Step Fourier Method (SSFM):
 
-### Nonlinear Step
+## Nonlinear Operator
 
-<p align="center">
-<img src="figures/nonlinear_step.png" width="500">
-</p>
+The nonlinear step accounts for Kerr nonlinearity and self-phase modulation (SPM):
+
+$$
+A(z+\Delta z, t) = A(z,t)\,\exp\left(i\gamma |A(z,t)|^2 \Delta z\right)
+$$
 
 The nonlinear operator applies Kerr nonlinearity and models self phase modulation (SPM) during propagation.
 
@@ -69,11 +71,25 @@ $$
 
 ---
 
-## Dispersion Operator
+$$
+D(\omega) =
+i\frac{\beta_2}{2}\omega^2
++
+i\frac{\beta_3}{6}\omega^3
++
+i\frac{\beta_4}{24}\omega^4
++
+\cdots
+$$
 
-<p align="center">
-<img src="figures/dispersion_operator.png" width="650">
-</p>
+The field evolution in Fourier space is:
+
+$$
+\tilde{A}(\omega, z+\Delta z)
+=
+\tilde{A}(\omega, z)\,
+\exp\left(D(\omega)\Delta z\right)
+$$
 
 The dispersion operator models phase accumulation due to higher order chromatic dispersion during propagation.
 
