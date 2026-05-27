@@ -85,7 +85,7 @@ i\frac{\beta_4}{24}\omega^4
 \cdots
 $$
 
-The field evolution in Fourier space is:
+The field evolution in Fourier space is given by:
 
 $$
 \tilde{A}(\omega, z+\Delta z)
@@ -93,7 +93,6 @@ $$
 \tilde{A}(\omega, z)\,
 \exp\left(D(\omega)\Delta z\right)
 $$
-
 
 The dispersion operator models phase accumulation due to higher order chromatic dispersion during propagation.
 
