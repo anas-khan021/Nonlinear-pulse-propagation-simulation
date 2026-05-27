@@ -24,6 +24,7 @@ Pulse propagation is governed by the Generalized Nonlinear Schrödinger Equation
 $${\frac{\partial A}{\partial z}=-\frac{\alpha}{2}A+i\sum_{k\ge2}\frac{\beta_k}{k!}\left(i\frac{\partial}{\partial t}\right)^kA+i\gamma|A|^2A}$$
 
 </p>
+
 where:
 
 | Parameter | Description |
@@ -57,10 +58,7 @@ $$
 ### Linear Step
 
 $$
-\tilde A
-\leftarrow
-\tilde A
-\exp(D(\omega)\Delta z)
+\tilde A \leftarrow \tilde A \exp(D(\omega)\Delta z)
 $$
 
 ### Inverse Fourier Transform
@@ -79,24 +77,97 @@ $$
 
 The dispersion operator models phase accumulation due to higher order chromatic dispersion during propagation.
 
-## Architecture
+---
 
-```text
-Input Pulse
-     │
-     ▼
-┌───────────┐
-│   SMF     │  2.8 m
-└───────────┘
-     │
-     ▼
-┌───────────┐
-│ Waveguide │  1 mm
-└───────────┘
-     │
-     ▼
-Output Pulse
-```
+## System Overview
+
+This work consists of two coupled models:
+
+### 1. Mode-locked laser cavity (SSFM round-trip simulation)
+
+The pulse evolves inside a nonlinear laser cavity including:
+
+- Erbium-doped fiber (gain + saturation)
+- Dispersion compensating fiber (DCF)
+- Single mode fiber (SMF)
+- Saturable absorber
+- Spectral filter
+- Output coupler
+
+The cavity is solved using iterative round-trip propagation.
+
+---
+
+### 2. External nonlinear propagation system
+
+The output pulse from the cavity is injected into:
+
+- Single Mode Fiber (SMF)
+- Integrated nonlinear waveguide (WG)
+
+This stage is used to study:
+- Spectral broadening
+- Self-phase modulation
+- Dispersion effects in integrated platforms
+
+---
+
+## Waveguide Dispersion Model (COMSOL Multiphysics)
+
+Waveguide dispersion parameters are computed using a **COMSOL eigenmode solver (EMW module)**.
+
+The model solves the electromagnetic eigenvalue problem for a SiNx waveguide structure including:
+
+- Core (SiNx)
+- Silica substrate
+- Cladding / superstrate
+- PML boundaries
+
+Material dispersion is included using:
+- Sellmeier model (silica)
+- Polynomial / interpolated SiNx refractive index
+
+---
+
+## Dispersion Extraction
+
+From COMSOL eigenmode results:
+
+Effective index:
+\[
+n_{\text{eff}}(\lambda)
+\]
+
+Propagation constant:
+\[
+\beta(\lambda)=\frac{2\pi n_{\text{eff}}}{\lambda}
+\]
+
+Group velocity:
+\[
+v_g=\left(\frac{d\beta}{d\omega}\right)^{-1}
+\]
+
+Group velocity dispersion:
+\[
+\beta_2=\frac{d^2\beta}{d\omega^2}
+\]
+
+Dispersion parameter:
+\[
+D=-\frac{2\pi c}{\lambda^2}\beta_2
+\]
+
+---
+
+## COMSOL Output Files
+
+The script generates:
+
+- `dispParams-Gwidth-*.dat`
+- `dispGVD-Gwidth-*.dat`
+
+These are directly used in the SSFM simulation for waveguide propagation.
 
 ---
 
@@ -150,9 +221,10 @@ Output Pulse
 project/
 │
 ├── simulation.py
+├── dispersion_comsol.m
 ├── figures/
-├── README.md
-└── requirements.txt
+├── data/
+└── README.md
 ```
 
 ---
@@ -161,7 +233,6 @@ project/
 
 ```bash
 pip install numpy matplotlib scipy pyqtgraph addict
-
 python simulation.py
 ```
 
@@ -171,6 +242,6 @@ python simulation.py
 
 - Raman scattering
 - Self-steepening
-- Adaptive step SSFM
-- Full GNLSE implementation
-- Experimental comparison
+- Adaptive SSFM step size
+- Full GNLSE vectorial model
+- Experimental validation
