@@ -70,6 +70,9 @@ A = IFFT(\tilde A)
 $$
 
 ---
+## Dispersion Operator
+
+The linear dispersion operator in the frequency domain is given by:
 
 $$
 D(\omega) =
@@ -90,6 +93,7 @@ $$
 \tilde{A}(\omega, z)\,
 \exp\left(D(\omega)\Delta z\right)
 $$
+
 
 The dispersion operator models phase accumulation due to higher order chromatic dispersion during propagation.
 
