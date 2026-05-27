@@ -20,6 +20,7 @@ The propagation is modeled using the Split Step Fourier Method (SSFM) to solve t
 Pulse propagation is governed by the Generalized Nonlinear Schrödinger Equation (GNLSE):
 
 $$
+
 \frac{\partial A}{\partial z}
 =
 -\frac{\alpha}{2}A
@@ -31,6 +32,7 @@ i\frac{\partial}{\partial t}
 \right)^k A
 +
 i\gamma |A|^2 A
+
 $$
 
 where:
