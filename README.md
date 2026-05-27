@@ -168,6 +168,7 @@ Dispersion parameter:
 $$
 D = -\frac{2\pi c}{\lambda^2}\beta_2
 $$
+
 ---
 
 ## COMSOL Output Files
