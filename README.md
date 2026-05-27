@@ -46,7 +46,8 @@ The propagation is solved using the Split Step Fourier Method (SSFM):
 <img src="figures/nonlinear_step.png" width="500">
 </p>
 
-The nonlinear operator accounts for self phase modulation (SPM) induced by the Kerr effect.
+The nonlinear operator applies Kerr nonlinearity and models self phase modulation (SPM) during propagation.
+
 ### Fourier Transform
 
 $$
@@ -72,16 +73,11 @@ $$
 
 ## Dispersion Operator
 
-$$
-D(\omega)
-=
-i\frac{\beta_2}{2}\omega^2
-+
-i\frac{\beta_3}{6}\omega^3
-+
-i\frac{\beta_4}{24}\omega^4
-+\cdots
-$$
+<p align="center">
+<img src="figures/dispersion_operator.png" width="650">
+</p>
+
+The dispersion operator models phase accumulation due to higher order chromatic dispersion during propagation.
 
 ## Architecture
 
