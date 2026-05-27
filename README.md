@@ -42,13 +42,11 @@ The propagation is solved using the Split Step Fourier Method (SSFM):
 
 ### Nonlinear Step
 
-$$
-A(z+\Delta z)
-=
-A(z)
-\exp(i\gamma |A|^2\Delta z)
-$$
+<p align="center">
+<img src="figures/nonlinear_step.png" width="500">
+</p>
 
+The nonlinear operator accounts for self phase modulation (SPM) induced by the Kerr effect.
 ### Fourier Transform
 
 $$
